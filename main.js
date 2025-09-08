@@ -22,13 +22,14 @@ async function getChefBirthday(id) {
   if (!user) {
     throw new Error(`User id ${userId} non trovato`);
   }
-  const birthDate = user.birthDate;
+  const birthDate = dayjs(user.birthDate).format("DD/MM/YYYY");
   return birthDate;
 }
 
 (async () => {
   try {
     const birthDate = await getChefBirthday(1);
+
     console.log("Chef birth date :", birthDate);
   } catch (error) {
     console.error("Errore: ", error.message);
